@@ -1,0 +1,16 @@
+﻿@model GodlyVilleProd.Models.Play
+@{
+    ViewBag.Title = "Play Details";
+}
+
+<h2>@Model.Name</h2>
+
+<ul>
+    <li>Musical: @Model.IsMusical</li>
+    <li>Acts: @Model.NumberOfActs</li>
+    <li>Duration: @Model.DurationInMinutes minutes</li>
+    <li>Description: @Model.Description</li>
+</ul>
+
+@Html.ActionLink("Return to Plays","Index","Plays", null, new { @class="btn btn-primary"})
+

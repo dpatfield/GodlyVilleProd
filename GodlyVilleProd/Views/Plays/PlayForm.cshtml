@@ -1,0 +1,45 @@
+﻿@model GodlyVilleProd.ViewModels.PlayFormViewModel
+
+@{
+    ViewBag.Title = Model.Title + " Form";
+}
+
+<h2>@Model.Title</h2>
+
+@using (Html.BeginForm("Save", "Plays"))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.IsMusical) Musical?
+        </label>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DurationInMinutes)
+        @Html.TextBoxFor(m => m.DurationInMinutes, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.DurationInMinutes)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NumberOfActs)
+        @Html.TextBoxFor(m => m.NumberOfActs, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NumberOfActs)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, 10, 100, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description)
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

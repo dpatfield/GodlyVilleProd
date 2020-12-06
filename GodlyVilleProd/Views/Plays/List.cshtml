@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GodlyVilleProd.Models.Play>
+
+@{
+    ViewBag.Title = "GodlyVille - Plays";
+}
+
+<h2>GodlyVille Plays</h2>
+@Html.ActionLink("Create New", "New", "Plays", null, new { @class = "btn btn-primary"})
+
+<div>
+    <h4>Below is a list of previous or upcoming productions:</h4>
+    <hr />
+    @if (!Model.Any())
+    {
+        <p>There are currently no plays at this time.</p>
+    }
+    else
+    {
+        <table id="plays" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Musical?</th>
+                    <th>Acts</th>
+                    <th>Duration(min)</th>
+                    <th>Description</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var play in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(play.Name, "Edit", "Plays", new { id = play.Id }, null)</td>
+                        <td>@play.IsMusical</td>
+                        <td>@play.NumberOfActs</td>
+                        <td>@play.DurationInMinutes</td>
+                        <td>@play.Description</td>
+                        <td>
+                            <button name="btn-delete" data-add-play="@play.Id" class="btn-link js-delete">Delete</button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {})
+    </script>
+}

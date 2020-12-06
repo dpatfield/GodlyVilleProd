@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GodlyVilleProd.Models.Play>
+
+@{
+    ViewBag.Title = "GodlyVille - Plays";
+}
+
+<h2>GodlyVille Plays</h2>
+
+<div>
+    <h4>Below is a list of previous and/or upcoming productions:</h4>
+    <hr />
+    @if (!Model.Any())
+    {
+        <p>There are currently no plays at this time.</p>
+    }
+    else
+    {
+        <table id="plays" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Musical?</th>
+                    <th>Acts</th>
+                    <th>Duration(min)</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var play in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(play.Name, "Details", "Plays", new { id = play.Id }, null)</td>
+                        <td>@play.IsMusical</td>
+                        <td>@play.NumberOfActs</td>
+                        <td>@play.DurationInMinutes</td>
+                        <td>@play.Description</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {})
+    </script>
+}
